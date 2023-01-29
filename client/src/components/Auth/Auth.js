@@ -13,6 +13,7 @@ import { gapi } from "gapi-script";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { signin, signup } from "../../actions/auth";
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
@@ -26,15 +27,31 @@ const Auth = () => {
     });
   });
   const dispatch = useDispatch();
+
+  const initialState = { firstName: "", lastName: "", email: "", password: "" };
+
   const history = useHistory();
 
   const classes = useStyles();
 
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const handleSubmit = () => {};
+  const [formData, setFormData] = useState(initialState);
 
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData, "kjhkh");
+
+    if (isSignUp) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const googleSuccess = (res) => {
     const result = res?.profileObj; //this method is called optional chaining and won't throw an error
@@ -75,7 +92,7 @@ const Auth = () => {
             {isSignUp && (
               <>
                 <Input
-                  name="firstname"
+                  name="firstName"
                   label="First Name"
                   handleChange={handleChange}
                   autoFocus
@@ -83,7 +100,7 @@ const Auth = () => {
                   half
                 />
                 <Input
-                  name="lastname"
+                  name="lastName"
                   label="Last Name"
                   handleChange={handleChange}
                   autoFocus
