@@ -20,6 +20,7 @@ const Input = ({
         required
         onChange={handleChange}
         fullWidth
+        type={type}
         label={label}
         autoFocus={autoFocus}
         InputProps={

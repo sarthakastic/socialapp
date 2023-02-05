@@ -17,7 +17,9 @@ import { signin, signup } from "../../actions/auth";
 import useStyles from "./styles";
 import Input from "./Input";
 import Icon from "./Icon";
+import { AUTH } from "../../constants/actionTypes";
 
+const initialState = { firstName: "", lastName: "", email: "", password: "" };
 const Auth = () => {
   gapi.load("client:auth2", () => {
     gapi.client.init({
@@ -28,11 +30,11 @@ const Auth = () => {
   });
   const dispatch = useDispatch();
 
-  const initialState = { firstName: "", lastName: "", email: "", password: "" };
-
   const history = useHistory();
 
   const classes = useStyles();
+
+  const [showPassword, setShowPassword] = useState(true);
 
   const [isSignUp, setIsSignUp] = useState(false);
 
@@ -58,10 +60,10 @@ const Auth = () => {
     const token = res?.tokenId;
     console.log(res);
     try {
-      dispatch({ type: "AUTH", data: { result, token } });
+      dispatch({ type: AUTH, data: { result, token } });
       history.push("/");
     } catch (error) {
-      console.log(error);
+      console.log(error, "guyg");
     }
   };
 
@@ -72,10 +74,8 @@ const Auth = () => {
 
   const switchMode = () => {
     setIsSignUp((prevIsSignUp) => !prevIsSignUp);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
-
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
