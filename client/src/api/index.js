@@ -25,8 +25,27 @@ export const createPost = (newPost) =>
     },
   });
 export const updatePost = (id, updatedPost) =>
-  axios.patch(`/posts/${id}`, updatedPost);
-export const deletePost = (id) => axios.delete(`/posts/${id}`);
+  axios.patch(`/posts/${id}`, updatedPost, {
+    headers: {
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("profile")).token
+      }`,
+      "X-Custom-Header": "foobar",
+    },
+  });
+export const deletePost = (id) =>
+  axios.delete(
+    `/posts/${id}`,
+
+    {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("profile")).token
+        }`,
+        "X-Custom-Header": "foobar",
+      },
+    }
+  );
 export const likePost = (id) =>
   axios.patch(
     `/posts/${id}/likePost`,
