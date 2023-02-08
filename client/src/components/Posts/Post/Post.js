@@ -105,6 +105,7 @@ const Post = ({ post, setCurrentId }) => {
         <Button
           size="small"
           color="primary"
+          disabled={!user?.result}
           onClick={() => {
             dispatch(likePost(post._id));
           }}
