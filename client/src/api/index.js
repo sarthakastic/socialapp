@@ -14,13 +14,15 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = () => axios.get("/posts");
+export const fetchPosts = (page) => axios.get(`/posts?page=${page}`);
+
 export const fetchPostsBySearch = (searchQuery) =>
   axios.get(
     `/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${
       searchQuery.tags
     }`
   );
+
 export const createPost = (newPost) =>
   axios.post("/posts", newPost, {
     headers: {
@@ -30,6 +32,7 @@ export const createPost = (newPost) =>
       "X-Custom-Header": "foobar",
     },
   });
+
 export const updatePost = (id, updatedPost) =>
   axios.patch(`/posts/${id}`, updatedPost, {
     headers: {
@@ -39,6 +42,7 @@ export const updatePost = (id, updatedPost) =>
       "X-Custom-Header": "foobar",
     },
   });
+
 export const deletePost = (id) =>
   axios.delete(
     `/posts/${id}`,
@@ -52,6 +56,7 @@ export const deletePost = (id) =>
       },
     }
   );
+
 export const likePost = (id) =>
   axios.patch(
     `/posts/${id}/likePost`,
@@ -67,4 +72,5 @@ export const likePost = (id) =>
   );
 
 export const signin = (formData) => API.post("/users/signin", formData);
+
 export const signup = (formData) => API.post("/users/signup", formData);

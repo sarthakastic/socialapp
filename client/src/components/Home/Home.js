@@ -29,7 +29,7 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get("page") || 1;
-  const earchQuery = query.get("searchQuery");
+  const searchQuery = query.get("searchQuery");
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
 
@@ -57,10 +57,6 @@ const Home = () => {
   const handleDelete = (tagToDelete) => {
     setTags(tags.filter((tag) => tag !== tagToDelete));
   };
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
 
   return (
     <Grow in>
@@ -111,8 +107,9 @@ const Home = () => {
               </Button>
             </AppBar>
             <Form setCurrentId={setCurrentId} currentId={currentId} />
+
             <Paper className={classes.pagination} elevation={6}>
-              <Paginate />
+              <Paginate page={page} />
             </Paper>
           </Grid>
         </Grid>

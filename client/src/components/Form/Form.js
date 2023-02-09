@@ -15,7 +15,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const history = useHistory();
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.posts.posts.find((p) => p._id === currentId) : null
   );
 
   const [postData, setPostData] = useState({
