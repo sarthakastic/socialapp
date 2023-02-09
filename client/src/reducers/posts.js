@@ -4,6 +4,7 @@ import {
   UPDATE,
   LIKE,
   DELETE,
+  FETCH_BY_SEARCH,
 } from "../constants/actionTypes";
 
 export default (posts = [], action) => {
@@ -17,7 +18,8 @@ export default (posts = [], action) => {
       );
     case FETCH_ALL:
       return action.payload;
-
+    case FETCH_BY_SEARCH:
+      return action.payload;
     case CREATE:
       return [...posts, action.payload];
 

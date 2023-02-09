@@ -15,6 +15,12 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = () => axios.get("/posts");
+export const fetchPostsBySearch = (searchQuery) =>
+  axios.get(
+    `/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${
+      searchQuery.tags
+    }`
+  );
 export const createPost = (newPost) =>
   axios.post("/posts", newPost, {
     headers: {
