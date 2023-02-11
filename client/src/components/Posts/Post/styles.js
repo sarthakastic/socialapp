@@ -21,6 +21,9 @@ export default makeStyles({
     height: "100%",
     position: "relative",
   },
+  cardDetails: {
+    cursor: "pointer",
+  },
   overlay: {
     position: "absolute",
     top: "20px",

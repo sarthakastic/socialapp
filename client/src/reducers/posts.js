@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_POST,
   FETCH_BY_SEARCH,
   CREATE,
   UPDATE,
@@ -13,6 +14,8 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       return { ...state, isLoading: true };
     case "END_LOADING":
       return { ...state, isLoading: false };
+    case FETCH_POST:
+      return { ...state, post: action.payload };
     case FETCH_ALL:
       return {
         ...state,
