@@ -11,6 +11,7 @@ import moment from "moment";
 import { useParams, useHistory } from "react-router-dom";
 
 import useStyles from "./styles";
+import CommentSection from "./CommentSection";
 
 import { getPost, getPostsBySearch } from "../../actions/posts";
 
@@ -74,7 +75,7 @@ const Post = () => {
             <strong>Realtime Chat - coming soon!</strong>
           </Typography>
           <Divider style={{ margin: "20px 0" }} />
-          {/* <CommentSection post={post} /> */}
+          <CommentSection post={post} />
           <Divider style={{ margin: "20px 0" }} />
         </div>
         <div className={classes.imageSection}>

@@ -73,6 +73,20 @@ export const likePost = (id) =>
     }
   );
 
+export const comment = (value, id) =>
+  axios.post(
+    `/posts/${id}/commentPost`,
+    { value },
+    {
+      headers: {
+        Authorization: `Bearer ${
+          JSON.parse(localStorage.getItem("profile")).token
+        }`,
+        "X-Custom-Header": "foobar",
+      },
+    }
+  );
+
 export const signin = (formData) => API.post("/users/signin", formData);
 
 export const signup = (formData) => API.post("/users/signup", formData);

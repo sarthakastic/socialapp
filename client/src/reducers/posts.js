@@ -5,6 +5,7 @@ import {
   CREATE,
   UPDATE,
   DELETE,
+  COMMENT,
   LIKE,
 } from "../constants/actionTypes";
 
@@ -25,7 +26,16 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       };
     case FETCH_BY_SEARCH:
       return { ...state, posts: action.payload.data };
-
+    case COMMENT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post._id === action.payload._id) {
+            return action.payload;
+          }
+          return post;
+        }),
+      };
     case LIKE:
       return {
         ...state,
