@@ -5,13 +5,14 @@ import {
   CircularProgress,
   Divider,
 } from "@material-ui/core/";
+
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { useParams, useHistory } from "react-router-dom";
 
-import { getPost, getPostsBySearch } from "../../actions/posts";
-
 import useStyles from "./styles";
+
+import { getPost, getPostsBySearch } from "../../actions/posts";
 
 const Post = () => {
   const { post, posts, isLoading } = useSelector((state) => state.posts);
