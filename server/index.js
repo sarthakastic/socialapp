@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use("/posts", postRoutes);
 app.use("/users", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING!");
+});
+
 const CONNECTION_URL = process.env.CONNECTION_URL;
 
 const PORT = process.env.PORT || 5001;
