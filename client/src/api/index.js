@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: "https://socialapp-ten.vercel.app/",
 });
 
 API.interceptors.request.use((req) => {
@@ -14,9 +14,9 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = (page) => axios.get(`/posts?page=${page}`);
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
 
-export const fetchPost = (id) => axios.get(`/posts/${id}`);
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 
 export const fetchPostsBySearch = (searchQuery) =>
   axios.get(
@@ -26,7 +26,7 @@ export const fetchPostsBySearch = (searchQuery) =>
   );
 
 export const createPost = (newPost) =>
-  axios.post("/posts", newPost, {
+  API.post("/posts", newPost, {
     headers: {
       Authorization: `Bearer ${
         JSON.parse(localStorage.getItem("profile")).token
@@ -36,7 +36,7 @@ export const createPost = (newPost) =>
   });
 
 export const updatePost = (id, updatedPost) =>
-  axios.patch(`/posts/${id}`, updatedPost, {
+  API.patch(`/posts/${id}`, updatedPost, {
     headers: {
       Authorization: `Bearer ${
         JSON.parse(localStorage.getItem("profile")).token
@@ -46,7 +46,7 @@ export const updatePost = (id, updatedPost) =>
   });
 
 export const deletePost = (id) =>
-  axios.delete(
+  API.delete(
     `/posts/${id}`,
 
     {
@@ -60,7 +60,7 @@ export const deletePost = (id) =>
   );
 
 export const likePost = (id) =>
-  axios.patch(
+  API.patch(
     `/posts/${id}/likePost`,
     {},
     {
@@ -74,7 +74,7 @@ export const likePost = (id) =>
   );
 
 export const comment = (value, id) =>
-  axios.post(
+  API.post(
     `/posts/${id}/commentPost`,
     { value },
     {
